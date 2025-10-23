@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/testAPI.ts",
+  "scripts": {
+    "start": "ts-node src/testAPI.ts",
+    "build:project": "npx tsc --project ./",
+    "build": "npm run build:project",
+    "clean": "rm -R dist/*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hltv": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
