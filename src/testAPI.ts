@@ -13,19 +13,23 @@ const fs = require('fs');
 //     }) 
 // })
 
-// HLTV.getTeam({ id: 7175 }).then(res => {
-//     console.log(res)
+let teamsIDs = [7175, 13380, 12878, 11283, 12467, 4494, 4608, 4991, 6667, 5995, 8474, 7020, 6665, 4869, 9565]
+for (let i = 0; i < teamsIDs.length; i++) {
+    HLTV.getTeam({ id: teamsIDs[i] as number}).then(res => {
+        console.log(res)
+    
+        const json = JSON.stringify(res, null);
+    
+        fs.writeFile(`team${res.name}.json`, json, 'utf8', (err: any)=> {
+            if (err) {
+                console.error('Error writing file', err);
+            } else {
+                console.log('File successfully saved!');
+            }
+        }) 
+    })
 
-//     const json = JSON.stringify(res, null);
-
-//     fs.writeFile(`team${res.name}.json`, json, 'utf8', (err: any)=> {
-//         if (err) {
-//             console.error('Error writing file', err);
-//         } else {
-//             console.log('File successfully saved!');
-//         }
-//     }) 
-// })
+}
 
 
 
@@ -279,21 +283,21 @@ const months: MonthType[] = [
 //     console.log(i);
 // }
 
-const result = Object.values(months).filter(v => typeof v === "string");
-let i = 0;
-for (const val of result) {
-   // console.log(val);
-    HLTV.getTeamRanking({ year: 2022, month: val, day: lundis2022[i] as number}).then(res => {
-    //console.log(res);
-    i++;
+// const result = Object.values(months).filter(v => typeof v === "string");
+// let i = 0;
+// for (const val of result) {
+//    // console.log(val);
+//     HLTV.getTeamRanking({ year: 2022, month: val, day: lundis2022[i] as number}).then(res => {
+//     //console.log(res);
+//     i++;
 
-    const json = JSON.stringify(res, null);
-    fs.writeFile(`ranking2022.json`, json, 'utf8', (err: any)=> {
-        if (err) {
-            console.error('Error writing file', err);
-        } else {
-            console.log('File successfully saved!');
-        }
-    }) 
-})
-}
+//     const json = JSON.stringify(res, null);
+//     fs.writeFile(`ranking2022.json`, json, 'utf8', (err: any)=> {
+//         if (err) {
+//             console.error('Error writing file', err);
+//         } else {
+//             console.log('File successfully saved!');
+//         }
+//     }) 
+// })
+// }
