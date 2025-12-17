@@ -1,5 +1,4 @@
 import HLTV from 'hltv'
-//console.log("hello");
 const fs = require('fs');
 
 let playersIDs = [
@@ -95,20 +94,7 @@ let playersIDs = [
 23414,
 9363
 ]
-// for (let i = 0; i < playersIDs.length; i++) {
 
-//     HLTV.getPlayer({ id: playersIDs[i] as number }).then(res => {
-//         const json = JSON.stringify(res, null);
-
-//         fs.writeFile(`player${res.ign}.json`, json, 'utf8', (err: any)=> {
-//             if (err) {
-//                 console.error('Error writing file', err);
-//             } else {
-//                 console.log('File successfully saved!');
-//             }
-//         })
-//     })
-// }
 
 let teamsIDs = [13380,
 12394,
@@ -217,21 +203,101 @@ let teamsIDs = [13380,
 5752,
 8120,
 5005]
-for (let i = 0; i < teamsIDs.length; i++) {
-    HLTV.getTeam({ id: teamsIDs[i] as number}).then(res => {
-        console.log(res)
-    
-        const json = JSON.stringify(res, null);
-    
-        fs.writeFile(`./teams/team${res.name}.json`, json, 'utf8', (err: any)=> {
-            if (err) {
-                console.error('Error writing file', err);
-            } else {
-                console.log('File successfully saved!');
-            }
-        }) 
-    })
+
+let eventsIds = [1]
+
+let matchIds = [2306295]
+
+function getPlayers(playersIDs: number[]) {
+    for (let i = 0; i < playersIDs.length; i++) {
+
+        HLTV.getPlayer({ id: playersIDs[i] as number }).then(res => {
+            const json = JSON.stringify(res, null);
+
+            fs.writeFile(`player${res.ign}.json`, json, 'utf8', (err: any)=> {
+                if (err) {
+                    console.error('Error writing file', err);
+                } else {
+                    console.log('File successfully saved!');
+                }
+            })
+        })
+    }
 }
+
+function getTeams(teamsIDs: number[]) {
+    for (let i = 0; i < teamsIDs.length; i++) {
+        HLTV.getTeam({ id: teamsIDs[i] as number}).then(res => {
+            console.log(res)
+        
+            const json = JSON.stringify(res, null);
+        
+            fs.writeFile(`./teams/team${res.name}.json`, json, 'utf8', (err: any)=> {
+                if (err) {
+                    console.error('Error writing file', err);
+                } else {
+                    console.log('File successfully saved!');
+                }
+            }) 
+        })
+    }
+}
+
+
+function getEvents(eventsIds: number[]) {
+    for (let i = 0; i < eventsIds.length; i++) {
+        HLTV.getEvent({id: eventsIds[i] as number}).then(res => {
+            console.log(res)
+
+            const json = JSON.stringify(res, null);
+
+            fs.writeFile(`./events/envent${res.name}.json`, json, 'utf8', (err: any)=> {
+                if (err) {
+                    console.error('Error writing file', err);
+                } else {
+                    console.log('File successfully saved!');
+                }
+            }) 
+        })
+    }
+}
+
+function getMatches(matchIds: number[]) {
+    for (let i = 0; i < matchIds.length; i++) {
+        HLTV.getMatch({ id: matchIds[i] as number }).then(res => {
+            console.log(res)
+            const match2 = {
+                id: res.id,
+                statsId: res.statsId,
+                significance: res.significance,
+                team1: res.team1,
+                team2: res.team2,
+                winnerTeam: res.winnerTeam,
+                date: res.date,
+                format: res.format,
+                event: res.event,
+                maps: res.maps,
+                players: res.players,
+                status: res.status,
+                title: res.title,
+                hasScorebot: res.hasScorebot,
+                highlightedPlayers: res.highlightedPlayers,
+                playerOfTheMatch: res.playerOfTheMatch
+            }
+        
+            const json = JSON.stringify(res, null);
+        
+            fs.writeFile(`./matches/match${res.id}.json`, json, 'utf8', (err: any)=> {
+                if (err) {
+                    console.error('Error writing file', err);
+                } else {
+                    console.log('File successfully saved!');
+                }
+            })
+        })
+    }
+}
+
 
 
 
