@@ -95,37 +95,143 @@ let playersIDs = [
 23414,
 9363
 ]
-for (let i = 0; i < playersIDs.length; i++) {
+// for (let i = 0; i < playersIDs.length; i++) {
 
-    HLTV.getPlayer({ id: playersIDs[i] as number }).then(res => {
-        const json = JSON.stringify(res, null);
-
-        fs.writeFile(`player${res.ign}.json`, json, 'utf8', (err: any)=> {
-            if (err) {
-                console.error('Error writing file', err);
-            } else {
-                console.log('File successfully saved!');
-            }
-        })
-    })
-}
-
-// let teamsIDs = [7175, 13380, 12878, 11283, 12467, 4494, 4608, 4991, 6667, 5995, 8474, 7020, 6665, 4869, 9565]
-// for (let i = 0; i < teamsIDs.length; i++) {
-//     HLTV.getTeam({ id: teamsIDs[i] as number}).then(res => {
-//         console.log(res)
-    
+//     HLTV.getPlayer({ id: playersIDs[i] as number }).then(res => {
 //         const json = JSON.stringify(res, null);
-    
-//         fs.writeFile(`team${res.name}.json`, json, 'utf8', (err: any)=> {
+
+//         fs.writeFile(`player${res.ign}.json`, json, 'utf8', (err: any)=> {
 //             if (err) {
 //                 console.error('Error writing file', err);
 //             } else {
 //                 console.log('File successfully saved!');
 //             }
-//         }) 
+//         })
 //     })
 // }
+
+let teamsIDs = [13380,
+12394,
+11616,
+9976,
+6651,
+8589,
+6619,
+6033,
+7081,
+6112,
+7175,
+10333,
+12502,
+11251,
+11102,
+10278,
+10733,
+9539,
+12878,
+4608,
+6667,
+11283,
+5973,
+5310,
+5988,
+5008,
+4494,
+4803,
+5722,
+5273,
+5063,
+4692,
+10371,
+10105,
+10235,
+10225,
+4688,
+9722,
+4978,
+6576,
+9246,
+6745,
+6410,
+12467,
+7101,
+7905,
+4869,
+10606,
+10766,
+7739,
+5639,
+7649,
+6889,
+6683,
+4991,
+6665,
+8971,
+10150,
+8481,
+6669,
+8474,
+5995,
+6134,
+5962,
+5569,
+4732,
+9518,
+6668,
+8773,
+9788,
+6855,
+7557,
+5996,
+6794,
+6686,
+5454,
+6425,
+5378,
+11595,
+7898,
+8135,
+7489,
+7340,
+11645,
+12372,
+11501,
+9949,
+11376,
+11120,
+6368,
+9924,
+9022,
+7376,
+11518,
+7532,
+12819,
+12527,
+10697,
+11092,
+10488,
+7425,
+8297,
+9565,
+7020,
+5752,
+8120,
+5005]
+for (let i = 0; i < teamsIDs.length; i++) {
+    HLTV.getTeam({ id: teamsIDs[i] as number}).then(res => {
+        console.log(res)
+    
+        const json = JSON.stringify(res, null);
+    
+        fs.writeFile(`./teams/team${res.name}.json`, json, 'utf8', (err: any)=> {
+            if (err) {
+                console.error('Error writing file', err);
+            } else {
+                console.log('File successfully saved!');
+            }
+        }) 
+    })
+}
 
 
 
