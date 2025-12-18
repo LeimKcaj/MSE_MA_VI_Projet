@@ -317,13 +317,31 @@ let eventIds = [
 //             })
 //         })
 
+// HLTV.getMatchesStats({ startDate: startDate, endDate: endDate }).then((res) => {
+//     console.log(res)
+    
+//     const json = JSON.stringify(res, null);
+    
+//     fs.writeFile(`./matches/` + startDate + `_` + endDate + `.json`, json, 'utf8', (err: any)=> {
+//         if (err) {
+//             console.error('Error writing file', err);
+//         } else {
+//             console.log('File successfully saved!');
+//         }
+//     })
+// })
 
-HLTV.getMatchesStats({ startDate: '2025-12-10', endDate: '2025-12-18' }).then((res) => {
+let year = '2010'
+let startDate = year + '-01-01'
+let endDate = year + '-12-31'
+
+        
+HLTV.getPastEvents({ startDate: startDate, endDate: endDate, delayBetweenPageRequests: 20 }).then(res => {
     console.log(res)
-    
+
     const json = JSON.stringify(res, null);
-    
-    fs.writeFile(`./matches/allmatches.json`, json, 'utf8', (err: any)=> {
+
+    fs.writeFile(`./events/events` + year + `.json`, json, 'utf8', (err: any) => {
         if (err) {
             console.error('Error writing file', err);
         } else {
@@ -601,4 +619,4 @@ const months: MonthType[] = [
 // })
 // }
 
-getPlayers(playersIDs);
+// getPlayers(playersIDs);
