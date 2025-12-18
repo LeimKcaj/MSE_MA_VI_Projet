@@ -266,24 +266,24 @@ function getMatches(matchIds: number[]) {
     for (let i = 0; i < matchIds.length; i++) {
         HLTV.getMatch({ id: matchIds[i] as number }).then(res => {
             console.log(res)
-            const match2 = {
-                id: res.id,
-                statsId: res.statsId,
-                significance: res.significance,
-                team1: res.team1,
-                team2: res.team2,
-                winnerTeam: res.winnerTeam,
-                date: res.date,
-                format: res.format,
-                event: res.event,
-                maps: res.maps,
-                players: res.players,
-                status: res.status,
-                title: res.title,
-                hasScorebot: res.hasScorebot,
-                highlightedPlayers: res.highlightedPlayers,
-                playerOfTheMatch: res.playerOfTheMatch
-            }
+            // const match2 = {
+            //     id: res.id,
+            //     statsId: res.statsId,
+            //     significance: res.significance,
+            //     team1: res.team1,
+            //     team2: res.team2,
+            //     winnerTeam: res.winnerTeam,
+            //     date: res.date,
+            //     format: res.format,
+            //     event: res.event,
+            //     maps: res.maps,
+            //     players: res.players,
+            //     status: res.status,
+            //     title: res.title,
+            //     hasScorebot: res.hasScorebot,
+            //     highlightedPlayers: res.highlightedPlayers,
+            //     playerOfTheMatch: res.playerOfTheMatch
+            // }
         
             const json = JSON.stringify(res, null);
         
@@ -298,8 +298,40 @@ function getMatches(matchIds: number[]) {
     }
 }
 
+// getMatches(matchIds)
+
+let eventIds = [
+    3389
+]
+
+// HLTV.getMatches({eventIds: eventIds}).then(res => {
+//             console.log(res)
+        
+//             const json = JSON.stringify(res, null);
+        
+//             fs.writeFile(`./matches/allmatches.json`, json, 'utf8', (err: any)=> {
+//                 if (err) {
+//                     console.error('Error writing file', err);
+//                 } else {
+//                     console.log('File successfully saved!');
+//                 }
+//             })
+//         })
 
 
+HLTV.getMatchesStats({ startDate: '2025-12-10', endDate: '2025-12-18' }).then((res) => {
+    console.log(res)
+    
+    const json = JSON.stringify(res, null);
+    
+    fs.writeFile(`./matches/allmatches.json`, json, 'utf8', (err: any)=> {
+        if (err) {
+            console.error('Error writing file', err);
+        } else {
+            console.log('File successfully saved!');
+        }
+    })
+})
 
 // HLTV.getTeamRanking({ year: 2022, month: 'december', day: 26}).then(res => {
 //     console.log(res)
