@@ -1,0 +1,102 @@
+MA_VI – Esports Analytics & Visualization Project
+=================================================
+
+MA_VI est un projet de data analytics et de visualisation dédié à l’écosystème esport,
+avec un focus principal sur Counter-Strike (HLTV data).
+
+L’objectif du projet est de centraliser, structurer et analyser des données historiques
+et actuelles liées aux joueurs, équipes, trophées, rankings et performances, puis de
+les restituer à travers des visualisations interactives dans Power BI.
+
+-------------------------------------------------
+1. Sources de données
+-------------------------------------------------
+
+Les données proviennent principalement de fichiers JSON structurés, récupérés depuis
+une API et organisés par dossiers thématiques :
+
+- players : informations détaillées sur les joueurs
+- teams : métadonnées des équipes (ID, nom, logo, etc.)
+- ranks : rankings mondiaux et historiques
+- matches : données de matchs
+- trophies / achievements : trophées individuels et d’équipe
+
+Les fichiers sont importés et transformés via Power Query (M), avec une logique
+d’ETL modulaire et réutilisable.
+
+-------------------------------------------------
+2. Modélisation des données
+-------------------------------------------------
+
+Le modèle repose sur plusieurs tables clés :
+
+- DimPlayers
+- DimTeams
+- PlayersTeamsTrophies (table de faits centrale)
+- TeamAchievements
+- Rankings
+
+Des logiques avancées sont utilisées pour :
+- reconstruire les rosters dans le temps
+- déterminer l’équipe actuelle d’un joueur
+- gérer les joueurs sans équipe ("No Team")
+- éviter les conflits de filtres entre slicers, cartes et drill-through
+
+-------------------------------------------------
+3. Transformations Power Query (M)
+-------------------------------------------------
+
+Le projet utilise des transformations complexes, notamment :
+
+- Normalisation des valeurs vides en null
+- Groupements conditionnels pour déterminer l’équipe active
+- Pivot dynamique Name / Value → Colonnes
+- Gestion des erreurs et exploration des données invalides
+- Enrichissement des tables avec des métadonnées (SourcePath, Folder)
+
+L’objectif est d’obtenir un modèle robuste, maintenable et évolutif.
+
+-------------------------------------------------
+4. Visualisations Power BI
+-------------------------------------------------
+
+Les dashboards incluent :
+
+- Cartes d’identité joueur (photo, équipe actuelle, logo)
+- Rankings scrollables et dynamiques
+- Cartes du monde interactives
+- Gantt et timelines de carrière
+- Visualisations de trophées par équipe et joueur
+
+Un soin particulier est apporté à l’UX :
+- gestion des filtres conflictuels
+- pages masquées pour fluidifier la navigation
+- boutons personnalisés
+- arrière-plans sombres ou transparents
+- intégration d’images et de logos (SVG, URL)
+
+-------------------------------------------------
+5. Problématiques techniques traitées
+-------------------------------------------------
+
+- Conflits de slicers et de drill-through
+- Logos non affichés selon le contexte de filtre
+- Limitations des visuels Power BI standards
+- Performance et lisibilité du modèle
+- Lisibilité et couleurs des graphiques
+
+Des solutions pragmatiques ont été privilégiées afin de garantir une expérience utilisateur fluide.
+
+-------------------------------------------------
+6. Objectif final
+-------------------------------------------------
+
+MA_VI vise à devenir une plateforme analytique complète permettant :
+
+- d’explorer la carrière des joueurs
+- d’analyser la domination des équipes dans le temps
+- de visualiser l’histoire compétitive de Counter-Strike
+- de proposer une lecture claire et esthétique des données esport
+
+Projet orienté data engineering, data modeling et data visualization,
+avec une forte dimension exploratoire et produi
