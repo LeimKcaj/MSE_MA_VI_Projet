@@ -42,6 +42,12 @@ Des logiques avancées sont utilisées pour :
 - gérer les joueurs sans équipe ("No Team")
 - éviter les conflits de filtres entre slicers, cartes et drill-through
 
+Selon la théorie :
+- Favoriser une bonne ergonomie d'utilisation avec des concepts faciles de compréhension
+- Choisir des couleurs et des contrastes lisibles
+- Utilisation de filtres, zoom et autres contrôles GUI!
+- Data-ink ratio (carte du monde)
+
 -------------------------------------------------
 3. Transformations Power Query (M)
 -------------------------------------------------
